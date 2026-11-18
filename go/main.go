@@ -34,7 +34,9 @@ const maxBodyBytes = 10 << 20
 //
 // Return the status and the bare MCP result. The gateway wraps the result in
 // the JSON-RPC envelope, so your own envelope would nest. `isError: true` is
-// still a CHARGED call; return a 4xx when the caller should not pay.
+// still a CHARGED call: use it only when the caller's input made your tool fail
+// after it did work. When your tool itself fails, return a 5xx; when the
+// request is wrong before any work, a 4xx. Both refund the caller.
 func runTool(tool string, args map[string]any) (int, any) {
 	switch tool {
 	case "word_count":

@@ -50,7 +50,9 @@ def run_tool(tool: str, args: dict) -> tuple[int, dict]:
 
     Return (status, the bare MCP result). The gateway wraps the result in the
     JSON-RPC envelope, so your own envelope would nest. `isError: True` is
-    still a CHARGED call; return a 4xx when the caller should not pay.
+    still a CHARGED call: use it only when the caller's input made your tool fail
+    after it did work. When your tool itself fails, return a 5xx; when the
+    request is wrong before any work, a 4xx. Both refund the caller.
     """
     if tool == "word_count":
         text = args.get("text") if isinstance(args.get("text"), str) else ""

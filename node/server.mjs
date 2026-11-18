@@ -46,8 +46,9 @@ const config = {
  *
  * Return the bare MCP result object. The gateway wraps it in the JSON-RPC
  * envelope for the developer, so returning your own envelope would nest it.
- * A result with `isError: true` is still a successful, CHARGED call -- return
- * a 4xx instead when the caller should not pay for the failure.
+ * A result with `isError: true` is still a successful, CHARGED call: use it
+ * only when the caller's input made your tool fail after it did work. When your tool itself fails, return a 5xx; when the
+ * request is wrong before any work, a 4xx. Both refund the caller.
  */
 function runTool(tool, args) {
   switch (tool) {
