@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+# The HTTP server. Ed25519, SHA-256 and JSON come with Ruby itself.
+gem "webrick", "~> 1.9"

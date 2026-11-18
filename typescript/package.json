@@ -1,0 +1,14 @@
+{
+  "name": "nexus-endpoint",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "start": "node server.ts",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.0",
+    "typescript": "^6.0.3"
+  }
+}
